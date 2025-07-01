@@ -25,11 +25,11 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install -r ci_app/app1/requirements.txt
-      
 
-    - name: Run tests
+    - name: Run Flask and test
       run: |
-        # Buraya test komutlarını yazacağız. Şimdilik sadece Flask çalışıyor mu bakalım:
-        python -m flask run --host=0.0.0.0 &
+        cd ci_app/app1
+        export FLASK_APP=app.py  # Eğer uygulama dosyanızın adı farklıysa burayı değiştirin
+        nohup flask run --host=127.0.0.1 > flask.log 2>&1 &
         sleep 5
-        curl http://localhost:5000/
+        curl http://127.0.0.1:5000/

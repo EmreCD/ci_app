@@ -28,7 +28,7 @@ jobs:
 
     - name: Run Flask and test
       run: |
-        cd /app1
+        cd app1
         export FLASK_APP=app.py  # Eğer uygulama dosyanızın adı farklıysa burayı değiştirin
         nohup flask run --host=127.0.0.1 > flask.log 2>&1 &
         sleep 5

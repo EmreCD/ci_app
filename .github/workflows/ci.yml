@@ -29,7 +29,17 @@ jobs:
     - name: Run Flask and test
       run: |
         cd app1
-        export FLASK_APP=app.py  # Eğer uygulama dosyanızın adı farklıysa burayı değiştirin
-        nohup flask run --host=127.0.0.1 > flask.log 2>&1 &
-        sleep 5
-        curl http://127.0.0.1:5000/
+        export FLASK_APP=app.py
+        export FLASK_ENV=development
+        nohup flask run --host=127.0.0.1 --port=5000 > flask.log 2>&1 &
+        for i in {1..10}; do
+          if curl --silent http://127.0.0.1:5000/; then
+            echo "Flask uygulaması başarılı şekilde yanıt verdi."
+            exit 0
+          fi
+          echo "Sunucu hazır değil, yeniden deneniyor..."
+          sleep 1
+        done
+        echo "Flask uygulaması başlatılamadı."
+        cat flask.log
+        exit 1

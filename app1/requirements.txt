@@ -3,6 +3,7 @@ beautifulsoup4==4.13.4
 blinker==1.9.0
 certifi==2025.6.15
 cffi==1.17.1
+flask==2.3.3
 charset-normalizer==3.4.2
 click==8.1.8         # 8.2.1 Python >=3.10 istiyordu, bu sürüm uyumlu
 numba==0.61.2        # Uyumlu Python >=3.9,<3.11
